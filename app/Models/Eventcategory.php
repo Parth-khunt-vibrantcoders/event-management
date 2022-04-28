@@ -160,7 +160,7 @@ class Eventcategory extends Model
                 $inputData = $request->input();
                 unset($inputData['_token']);
                 $objAudittrails = new Audittrails();
-                $res = $objAudittrails->add_audit('Insert','admin/event-category/'. $currentRoute , json_encode($inputData) ,'Event Category' );
+                $res = $objAudittrails->add_audit('Update','admin/event-category/'. $currentRoute , json_encode($inputData) ,'Event Category' );
                 return 'true';
             }else{
                 return 'false';
@@ -197,4 +197,11 @@ class Eventcategory extends Model
         }
     }
 
+    public function get_event_category_list(){
+        return Eventcategory::where('event_category.is_deleted', 'N')
+                    ->where('event_category.status', 'A')
+                    ->select('event_category.id', 'event_category.name')
+                    ->get()
+                    ->toArray();
+    }
 }
