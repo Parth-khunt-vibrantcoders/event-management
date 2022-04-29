@@ -68,10 +68,10 @@ class Packages extends Model
         foreach ($resultArr as $row) {
             $actionhtml  = '';
 
-            if(file_exists( public_path().'/upload/packages/'.$row['photo']) && $row['photo'] != ''){
-                $packages = url("public/upload/packages/".$row['photo']);
+            if(file_exists( public_path().'/upload/packages_image/'.$row['photo']) && $row['photo'] != ''){
+                $packages = url("public/upload/packages_image/".$row['photo']);
             }else{
-                $packages = url("public/upload/packages/no-image.png");
+                $packages = url("public/upload/packages_image/no-image.png");
             }
 
             $actionhtml =  $actionhtml. '<a href="' . route('packages-edit', $row['id']) . '" class="btn btn-icon"><i class="fa fa-edit text-warning" title="Edit packages"> </i></a>';
@@ -87,7 +87,7 @@ class Packages extends Model
             $i++;
             $nestedData = array();
             $nestedData[] = $i;
-            $nestedData[] = '<img src="'.$packages.'" class="rounded-circle table-image"  style="width:70px;height:70px">';
+            $nestedData[] = '<img src="'.$packages.'" class="table-image"  style="width:150px;height:100px">';
             $nestedData[] = $row['name'];
             $nestedData[] = $row['places'];
             $nestedData[] = $row['event_category'];
@@ -134,5 +134,93 @@ class Packages extends Model
         }
     }
 
+    public function add_save_packages($request){
+        
+        $count = Packages::where('packages.category', $request->input('event_category'))
+                        ->where('packages.places', $request->input('place'))
+                        ->where('packages.name', $request->input('name'))
+                        ->where('packages.is_deleted', 'N')
+                        ->count();
+        if($count == 0){
+            $objPackages = new Packages();
+            $objPackages->category = $request->input('event_category');
+            $objPackages->places = $request->input('place');
+            $objPackages->name = $request->input('name');
 
+            if($request->file('packages_image')){
+                $image = $request->file('packages_image');
+                $imagename = 'packages_image'.time().'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/upload/packages_image/');
+                $image->move($destinationPath, $imagename);
+                $objPackages->photo = $imagename;
+            }
+
+            $objPackages->details = $request->input('detail');
+            $objPackages->price = $request->input('price');
+            $objPackages->status = $request->input('status');
+            $objPackages->is_deleted = 'N';
+            $objPackages->created_at = date('Y-m-d H:i:s');
+            $objPackages->updated_at = date('Y-m-d H:i:s');
+            if($objPackages->save()){
+                $currentRoute = Route::current()->getName();
+                $inputData = $request->input();
+                unset($inputData['_token']);
+                $objAudittrails = new Audittrails();
+                $res = $objAudittrails->add_audit('Insert','admin/packages/'. $currentRoute , json_encode($inputData) ,'Packages' );
+                return 'true';
+            }else{
+                return 'false';
+            }
+        }
+        return 'already_exits';
+    }
+   
+    public function edit_save_packages($request){
+        
+        $count = Packages::where('packages.category', $request->input('event_category'))
+                        ->where('packages.places', $request->input('place'))
+                        ->where('packages.name', $request->input('name'))
+                        ->where('packages.id', '!=', $request->input('editId'))
+                        ->where('packages.is_deleted', 'N')
+                        ->count();
+        if($count == 0){
+            $objPackages = Packages::find($request->input('editId'));
+            $objPackages->category = $request->input('event_category');
+            $objPackages->places = $request->input('place');
+            $objPackages->name = $request->input('name');
+
+            if($request->file('packages_image')){
+                $image = $request->file('packages_image');
+                $imagename = 'packages_image'.time().'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('/upload/packages_image/');
+                $image->move($destinationPath, $imagename);
+                $objPackages->photo = $imagename;
+            }
+
+            $objPackages->details = $request->input('detail');
+            $objPackages->price = $request->input('price');
+            $objPackages->status = $request->input('status');
+            $objPackages->is_deleted = 'N';
+            $objPackages->created_at = date('Y-m-d H:i:s');
+            $objPackages->updated_at = date('Y-m-d H:i:s');
+            if($objPackages->save()){
+                $currentRoute = Route::current()->getName();
+                $inputData = $request->input();
+                unset($inputData['_token']);
+                $objAudittrails = new Audittrails();
+                $res = $objAudittrails->add_audit('Insert','admin/packages/'. $currentRoute , json_encode($inputData) ,'Packages' );
+                return 'true';
+            }else{
+                return 'false';
+            }
+        }
+        return 'already_exits';
+    }
+
+    public function get_packages_list($editId){
+        return Packages::where('packages.id', $editId)
+                        ->select('packages.id', 'packages.category', 'packages.places', 'packages.name', 'packages.photo', 'packages.details', 'packages.price', 'packages.status')
+                        ->get()
+                        ->toArray();
+    }
 }

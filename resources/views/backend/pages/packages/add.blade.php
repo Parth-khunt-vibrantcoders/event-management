@@ -53,7 +53,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Packages Photo<span class="text-danger">*</span></label>
-                                        <input type="file" name="image" class="form-control" placeholder="Please enter packages photo" >
+                                        <input type="file" name="packages_image" class="form-control" placeholder="Please enter packages photo" >
                                     </div>
                                 </div>
 

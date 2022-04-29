@@ -87,7 +87,35 @@ class PackagesController extends Controller
         return view('backend.pages.packages.add', $data);
     }
 
-    public function edit(Request $request){
+
+    public function add_save_packages(Request $request){
+        $objPackages = new Packages();
+        $res = $objPackages->add_save_packages($request);
+        if ($res == "true") {
+            $return['status'] = 'success';
+            $return['message'] = 'Package successfully added';
+            $return['jscode'] = '$("#loader").hide();';
+            $return['redirect'] = route('packages-list');
+        }else{
+            if ($res == "already_exits") {
+                $return['status'] = 'warning';
+                $return['message'] = 'Package already exits.';
+                $return['jscode'] = '$(".submitbtn:visible").removeAttr("disabled");$("#loader").hide();';
+            }else{
+                $return['status'] = 'error';
+                $return['jscode'] = '$(".submitbtn:visible").removeAttr("disabled");$("#loader").hide();';
+                $return['message'] = 'Something goes to wrong';
+            }
+
+        }
+        echo json_encode($return);
+        exit;
+    }
+
+    public function edit($editId){
+        $objPackages = new Packages();
+        $data['packages_details'] = $objPackages->get_packages_list($editId);
+        
         $objPlaces = new Places();
         $data['place_list'] = $objPlaces->get_places_list();
 
@@ -125,18 +153,18 @@ class PackagesController extends Controller
         return view('backend.pages.packages.edit', $data);
     }
 
-    public function add_save_places(Request $request){
-        $objPlaces = new Places();
-        $res = $objPlaces->add_save_places($request);
+    public function edit_save_packages(Request $request){
+        $objPackages = new Packages();
+        $res = $objPackages->edit_save_packages($request);
         if ($res == "true") {
             $return['status'] = 'success';
-            $return['message'] = 'Place successfully added';
+            $return['message'] = 'Package successfully updated.';
             $return['jscode'] = '$("#loader").hide();';
-            $return['redirect'] = route('places-list');
+            $return['redirect'] = route('packages-list');
         }else{
             if ($res == "already_exits") {
                 $return['status'] = 'warning';
-                $return['message'] = 'Place already exits.';
+                $return['message'] = 'Package already exits.';
                 $return['jscode'] = '$(".submitbtn:visible").removeAttr("disabled");$("#loader").hide();';
             }else{
                 $return['status'] = 'error';

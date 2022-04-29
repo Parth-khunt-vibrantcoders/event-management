@@ -8,8 +8,8 @@ var Packages = function(){
             'ajaxAction': 'getdatatable',
             'postData': dataArr,
             'hideColumnList': [],
-            'noSortingApply': [0, 7],
-            'noSearchApply': [0, 7],
+            'noSortingApply': [0, 1, 8],
+            'noSearchApply': [0, 1, 8],
             'defaultSortColumn': [0],
             'defaultSortOrder': 'DESC',
             'setColumnWidth': columnWidth
