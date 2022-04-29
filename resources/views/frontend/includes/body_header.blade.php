@@ -8,7 +8,7 @@
                     <div class="left-side">
                         <!-- Logo -->
                         <div id="logo">
-                            <a href="index.html"><img src="{{  asset('public/frontend/images/logo-white-1.svg') }}" data-sticky-logo="images/logo-red.svg" alt=""></a>
+                            <a href="index.html"><img src="{{  asset('public/frontend/images/favicon.png') }}" data-sticky-logo="images/logo-red.svg" alt=""></a>
                         </div>
                         <!-- Mobile Navigation -->
                         <div class="mmenu-trigger">
