@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\LoginController;
+use App\Http\Controllers\frontend\HomeController;
 use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,8 @@ Route::get('/clear-cache', function() {
     Artisan::call('view:clear');
     echo "view is cleared<br>";
 });
+Route::get('', [HomeController::class, 'home'])->name('home');
 
-Route::get('/', [LoginController::class, 'login'])->name('login');
+Route::get('admin-login', [LoginController::class, 'login'])->name('admin-login');
 Route::post('check-login', [LoginController::class, 'check_login'])->name('check-login');
 Route::get('/testing-mail', [LoginController::class, 'testingmail'])->name('testing-mail');

@@ -22,8 +22,7 @@ if(file_exists( public_path().'/upload/systemsetting/'.get_system_setting_detail
                 <!--begin::Login Sign in form-->
                 <div class="login-signin">
                     <div class="mb-10 text-center">
-                        <img alt="Logo" src="{{  asset('public/upload/systemsetting/logo-black.png') }}" class="max-h-55px" />
-                        
+                        <img alt="Logo" src="{{  asset('public/upload/systemsetting/logo-black.png') }}" class="max-h-55px" />                        
                         <p class="">Enter your details to login to your account:</p>                        
                     </div>
                     <form class="form"  id="login-form" method="POST" enctype="multipart/form-data" action="{{ route('check-login') }}">@csrf

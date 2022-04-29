@@ -69,7 +69,7 @@ class LoginController extends Controller
     public function logout(Request $request) {
         $this->resetGuard();
         $request->session()->forget('logindata');
-        return redirect()->route('login');
+        return redirect()->route('admin-login');
     }
 
     public function resetGuard() {
