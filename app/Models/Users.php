@@ -84,4 +84,30 @@ class Users extends Model
             return "password_not_match";
         }
     }
+
+    public function signup($request){
+
+        $count = Users::where('users.is_deleted','N')->where('users.email', $request->input('email'))->count();
+        if($count == 0){
+            $objUsers = new Users();
+            $objUsers->first_name =  $request->input('firstname');
+            $objUsers->last_name =  $request->input('lastname');
+            $objUsers->full_name =  $request->input('firstname')." ".$request->input('lastname');
+            $objUsers->email  =  $request->input('email');
+            $objUsers->email_verified_at = date('Y-m-d H:i:s');
+            $objUsers->password =  Hash::make($request->input('password'));
+            $objUsers->userimage =  NULL;
+            $objUsers->user_type =  'U';
+            $objUsers->status =  'A';
+            $objUsers->is_deleted =  'N';
+            $objUsers->created_at =  date('Y-m-d H:i:s');
+            $objUsers->updated_at =  date('Y-m-d H:i:s');
+            if($objUsers->save()){
+                return 'true';
+            }else{
+                return 'false';
+            }
+        }
+        return 'email_already_exits';
+    }
 }

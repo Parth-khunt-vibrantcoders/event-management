@@ -55,7 +55,7 @@
         <script src="{{  asset('public/frontend/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
         <script>
             var typed = new Typed('.typed', {
-                strings: ["House ^2000", "Apartment ^2000", "Plaza ^4000"],
+                strings: ["Event ^2000"],
                 smartBackspace: false,
                 loop: true,
                 showCursor: true,
@@ -115,3 +115,31 @@
 
         <!-- MAIN JS -->
         <script src="{{  asset('public/frontend/js/script.js') }}"></script>
+
+        @if (!empty($pluginjs))
+        @foreach ($pluginjs as $value)
+            <script src="{{ asset('public/frontend/js/'.$value) }}" type="text/javascript"></script>
+        @endforeach
+        @endif
+
+        @if (!empty($js))
+        @foreach ($js as $value)
+            <script src="{{ asset('public/frontend/js/customjs/'.$value) }}" type="text/javascript"></script>
+        @endforeach
+        @endif
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                $('#loader').show();
+                $('#loader').fadeOut(2000);
+            });
+        </script>
+
+        <script>
+            jQuery(document).ready(function () {
+                @if (!empty($funinit))
+                        @foreach ($funinit as $value)
+                            {{  $value }}
+                        @endforeach
+                @endif
+            });
+        </script>

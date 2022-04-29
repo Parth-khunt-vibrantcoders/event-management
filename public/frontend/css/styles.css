@@ -138,6 +138,11 @@ h5 {
   color: #444;
 }
 
+
+.help-block{
+    color: red !important;
+}
+
 .top-headings-section {
   padding-bottom: 2rem;
 }
@@ -23122,5 +23127,6 @@ section.ui-element {
     font-size: 26px;
   }
 }
+
 
 /*# sourceMappingURL=styles.css.map */

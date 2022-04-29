@@ -6,8 +6,8 @@
     <!-- Wrapper -->
     <div id="wrapper">
         <!-- START SECTION HEADINGS -->
-        @include('frontend.includes.body_header')        
-        @yield('section')       
+        @include('frontend.includes.body_header')
+        @yield('section')
         @include('frontend.includes.body_footer')
 
         @include('frontend.includes.model')

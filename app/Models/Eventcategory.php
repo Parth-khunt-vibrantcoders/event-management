@@ -197,10 +197,13 @@ class Eventcategory extends Model
         }
     }
 
-    public function get_event_category_list(){
-        return Eventcategory::where('event_category.is_deleted', 'N')
-                    ->where('event_category.status', 'A')
-                    ->select('event_category.id', 'event_category.name')
+    public function get_event_category_list($limit = ''){
+        $qurey = Eventcategory::where('event_category.is_deleted', 'N')
+                    ->where('event_category.status', 'A');
+        if($limit){
+            $qurey->limit($limit);
+        }
+        return $qurey->select('event_category.id', 'event_category.name', 'event_category.image')
                     ->get()
                     ->toArray();
     }

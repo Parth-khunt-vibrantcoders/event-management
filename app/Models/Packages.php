@@ -135,7 +135,7 @@ class Packages extends Model
     }
 
     public function add_save_packages($request){
-        
+
         $count = Packages::where('packages.category', $request->input('event_category'))
                         ->where('packages.places', $request->input('place'))
                         ->where('packages.name', $request->input('name'))
@@ -174,9 +174,9 @@ class Packages extends Model
         }
         return 'already_exits';
     }
-   
+
     public function edit_save_packages($request){
-        
+
         $count = Packages::where('packages.category', $request->input('event_category'))
                         ->where('packages.places', $request->input('place'))
                         ->where('packages.name', $request->input('name'))
@@ -222,5 +222,30 @@ class Packages extends Model
                         ->select('packages.id', 'packages.category', 'packages.places', 'packages.name', 'packages.photo', 'packages.details', 'packages.price', 'packages.status')
                         ->get()
                         ->toArray();
+    }
+
+    public function get_packages_list_details($editId){
+        return Packages::from('packages')
+                        ->join('event_category', 'event_category.id', '=', 'packages.category')
+                        ->join('places', 'places.id', '=', 'packages.places')
+                        ->where('packages.id', $editId)
+                        ->where('packages.is_deleted', 'N')
+                        ->where('packages.status', 'A')
+                        ->select('packages.id', 'places.name as places', 'event_category.name as event_category', 'packages.category', 'packages.name', 'packages.photo', 'packages.details', 'packages.price', 'packages.status')
+                        ->get()
+                        ->toArray();
+    }
+
+    public function packages_list($limit = ''){
+        $qurey = Packages::from('packages')
+                    ->join('event_category', 'event_category.id', '=', 'packages.category')
+                    ->join('places', 'places.id', '=', 'packages.places')
+                    ->where('packages.is_deleted', 'N')->where('packages.status', 'A');
+        if($limit){
+            $qurey->limit($limit);
+        }
+        return $qurey->select('packages.id', 'places.name as places', 'event_category.name as event_category', 'packages.category', 'packages.name', 'packages.photo', 'packages.details', 'packages.price', 'packages.status')
+                    ->get()
+                    ->toArray();
     }
 }

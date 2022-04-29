@@ -173,10 +173,13 @@ class Places extends Model
         return 'places_exits';
     }
 
-    public function get_places_list(){
-        return Places::where('places.is_deleted', 'N')
-                    ->where('places.status', 'A')
-                    ->select('places.id', 'places.name')
+    public function get_places_list($limit = ''){
+        $qurey = Places::where('places.is_deleted', 'N')
+                    ->where('places.status', 'A');
+        if($limit){
+            $qurey->limit($limit);
+        }
+        return $qurey->select('places.id', 'places.name')
                     ->get()
                     ->toArray();
     }

@@ -1,4 +1,11 @@
-  <!-- Header Container
+<style>
+
+.right-side.sign {
+    width: 150px !important;
+    padding: 0px !important;
+    border: none !important;
+}
+</style><!-- Header Container
         ================================================== -->
         <header id="header-container" class="header head-tr">
             <!-- Header -->
@@ -8,7 +15,9 @@
                     <div class="left-side">
                         <!-- Logo -->
                         <div id="logo">
-                            <a href="index.html"><img src="{{  asset('public/frontend/images/favicon.png') }}" data-sticky-logo="images/logo-red.svg" alt=""></a>
+                            <a href="{{ route('home') }}">
+                                <img src="{{  asset('public/frontend/images/favicon.png') }}" data-sticky-logo="{{  asset('public/frontend/images/favicon.png') }}" alt="">
+                            </a>
                         </div>
                         <!-- Mobile Navigation -->
                         <div class="mmenu-trigger">
@@ -22,11 +31,10 @@
                         <nav id="navigation" class="style-1 head-tr">
                             <ul id="responsive">
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="{{ route('home') }}">Category</a></li>
-                                <li><a href="{{ route('home') }}">Packages</a></li>                                
-                                <li><a href="contact-us.html">Contact</a></li>
-                                <li class="d-none d-xl-none d-block d-lg-block"><a href="login.html">Login</a></li>
-                                <li class="d-none d-xl-none d-block d-lg-block"><a href="register.html">Register</a></li>                                
+                                <li><a href="{{ route('category') }}">Category</a></li>
+                                <li><a href="{{ route('packages') }}">Packages</a></li>
+                                <li><a href="{{ route('contact-us') }}">Contact</a></li>
+
                             </ul>
                         </nav>
                         <!-- Main Navigation / End -->
@@ -36,7 +44,18 @@
                     <div class="right-side d-none d-none d-lg-none d-xl-flex sign ml-0">
                         <!-- Header Widget -->
                         <div class="header-widget sign-in">
-                            <div class="show-reg-form modal-open"><a href="#">Sign In</a></div>
+                            @if (!empty(Auth()->guard('users')->user()))
+                                <div class="show-reg-form">
+                                    <a href="{{ route('my-dashboard') }}">My Dashboard</a>
+                                </div>
+                            @else
+                                <div class="show-reg-form">
+                                    <span class="text-white">
+                                        <i class="fa fa-sign-in text-white mr-2"></i>
+                                        <a href="{{ route('sign-in') }}" class="text-white">Sign In</a>
+                                    </span>
+                                </div>
+                            @endif
                         </div>
                         <!-- Header Widget / End -->
                     </div>

@@ -22,7 +22,7 @@ class Adminuser extends Seeder
             'password' => Hash::make('Master@2021'),
             'email_verified_at' => date('Y-m-d H:i:s'),
             'userimage' => 'default.png',
-            'user_type' => 1,
+            'user_type' => 'A',
             'status' => 'A',
             'is_deleted' => 'N',
             'created_at' => date("Y-m-d h:i:s"),

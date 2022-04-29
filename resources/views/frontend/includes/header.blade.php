@@ -38,4 +38,29 @@
     <link rel="stylesheet" href="{{  asset('public/frontend/css/styles.css') }}">
     <link rel="stylesheet" href="{{  asset('public/frontend/css/maps.css') }}">
     <link rel="stylesheet" id="color" href="{{  asset('public/frontend/css/colors/pink.css') }}">
+
+    @if (!empty($css))
+        @foreach ($css as $value)
+            @if(!empty($value))
+                <link rel="stylesheet" href="{{ asset('public/frontend/css/customcss/'.$value) }}">
+            @endif
+        @endforeach
+    @endif
+
+
+    @if (!empty($plugincss))
+        @foreach ($plugincss as $value)
+            @if(!empty($value))
+                <link rel="stylesheet" href="{{ asset('public/frontend/'.$value) }}">
+            @endif
+        @endforeach
+    @endif
+<style>
+    #header-container {
+        background: #004799 !important;
+    }
+</style>
+    <script>
+        var baseurl = "{{ asset('/') }}";
+    </script>
 </head>

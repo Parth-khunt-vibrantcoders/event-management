@@ -62,7 +62,7 @@
                                         <label>Packages Photo<span class="text-danger">*</span></label>
                                         <label class="text-danger" style="float: right !important">
                                             <a class="text-danger" href="{{ $packages }}" target="_blank">View Photo</a></label>
-                                        <input type="file" name="image" class="form-control" placeholder="Please enter packages photo" >
+                                        <input type="file" name="packages_image" class="form-control" placeholder="Please enter packages photo" >
                                     </div>
                                 </div>
 
