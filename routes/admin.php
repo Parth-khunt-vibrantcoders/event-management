@@ -13,6 +13,7 @@ use App\Http\Controllers\backend\booking\BookingController;
 
 use App\Http\Controllers\backend\users\UsersController;
 use App\Http\Controllers\backend\users\SubscriberController;
+use App\Http\Controllers\backend\contactus\ContactusController;
 
 Route::get('admin-logout', [LoginController::class, 'logout'])->name('admin-logout');
 
@@ -71,6 +72,12 @@ Route::group(['prefix' => $adminPrefix, 'middleware' => ['admin']], function() {
     Route::group(['prefix' => $adminPrefix, 'middleware' => ['admin']], function() {
         Route::get('booking-list', [BookingController::class, 'list'])->name('booking-list');
         Route::post('booking-ajaxcall', [BookingController::class, 'ajaxcall'])->name('booking-ajaxcall');
+    });
+
+    $adminPrefix = "contact-us";
+    Route::group(['prefix' => $adminPrefix, 'middleware' => ['admin']], function() {
+        Route::get('contact-us-list', [ContactusController::class, 'list'])->name('contact-us-list');
+        Route::post('contact-us-ajaxcall', [ContactusController::class, 'ajaxcall'])->name('contact-us-ajaxcall');
     });
 
 });

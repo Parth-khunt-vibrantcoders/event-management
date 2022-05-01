@@ -53,19 +53,7 @@
         <script src="{{  asset('public/frontend/revolution/js/extensions/revolution.extension.parallax.min.js') }}"></script>
         <script src="{{  asset('public/frontend/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
         <script src="{{  asset('public/frontend/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
-        <script>
-            var typed = new Typed('.typed', {
-                strings: ["Event ^2000"],
-                smartBackspace: false,
-                loop: true,
-                showCursor: true,
-                cursorChar: "|",
-                typeSpeed: 50,
-                backSpeed: 30,
-                startDelay: 800
-            });
 
-        </script>
 
         <script>
             $('.slick-lancers').slick({

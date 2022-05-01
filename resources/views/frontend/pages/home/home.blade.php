@@ -14,7 +14,7 @@
                             <div class="hero-inner">
                                 <!-- Welcome Text -->
                                 <div class="welcome-text">
-                                    <h1 class="h1">Find Your
+                                    <h1 class="h1">Make Your Events Standout with Us
                                     <br class="d-md-none">
                                     <span class="typed border-bottom"></span>
                                 </h1>

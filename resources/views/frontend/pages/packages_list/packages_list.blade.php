@@ -21,9 +21,13 @@
                         <div class="listing-item compact">
                             <a href="{{  route('packages-details', $value['id'])}}" class="listing-img-container">
 
+                                <div class="listing-badges">
+
+                                    <span class="rent">{{ $value['event_category']}}</span>
+                                </div>
+
                                 <div class="listing-img-content">
                                     <span class="listing-compact-title">{{ $value['name']}}</span>
-
                                 </div>
                                 @php
                                     if(file_exists( public_path().'/upload/packages_image/'.$value['photo']) && $value['photo'] != ''){

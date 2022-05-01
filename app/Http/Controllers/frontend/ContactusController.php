@@ -5,6 +5,8 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Config;
+use App\Models\Contactus;
+
 class ContactusController extends Controller
 {
     public function contact_us (){
@@ -35,6 +37,19 @@ class ContactusController extends Controller
     }
 
     public function save_contact_form(Request $request){
-        ccd($request->input());
+        $objContactus = new Contactus();
+        $res = $objContactus->save_contact_form($request);
+        if ($res) {
+            $return['status'] = 'success';
+            $return['jscode'] = '$(".submitbtn:visible").removeAttr("disabled");$("#loader").hide();';
+            $return['message'] = 'Your details successfully sent to admin.we will contact soon.';
+            $return['redirect'] = route('contact-us');
+        } else {
+            $return['status'] = 'error';
+            $return['jscode'] = '$(".submitbtn:visible").removeAttr("disabled");$("#loader").hide();';
+            $return['message'] = 'Something goes to wrong';
+        }
+        echo json_encode($return);
+        exit;
     }
 }

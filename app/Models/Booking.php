@@ -32,6 +32,7 @@ class Booking extends Model
                     ->join('event_category', 'event_category.id', '=', 'packages.category')
                     ->join('places', 'places.id', '=', 'packages.places')
                     ->where('booking.userid', $userId)
+                    ->orderBy('booking.id', 'DESC')
                     ->select('booking.price', 'booking.id', 'booking.status', 'packages.name as packages', 'event_category.name as event_category', 'places.name as places', 'booking.startdate', 'booking.enddate')
                     ->get()->toArray();
     }
