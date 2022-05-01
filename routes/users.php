@@ -20,7 +20,11 @@ $usersPrefix = "users";
 Route::group(['prefix' => $usersPrefix, 'middleware' => ['users']], function() {
     Route::get('my-dashboard', [DashboardController::class, 'dashboard'])->name('my-dashboard');
 
-    Route::get('my-booking', [BookingController::class, 'booking'])->name('my-booking');
+    Route::get('my-booking', [BookingController::class, 'my_booking'])->name('my-booking');
     Route::get('view-booking/{id}', [BookingController::class, 'view'])->name('view-booking');
+
+    Route::get('booking', [BookingController::class, 'booking'])->name('booking');
+    Route::post('save-book-package', [BookingController::class, 'save_booking'])->name('save-book-package');
+    Route::post('booking-ajaxcall', [BookingController::class, 'ajaxcall'])->name('booking-ajaxcall');
 });
 ?>

@@ -20,6 +20,7 @@
         </div>
         <!-- END PRELOADER -->
         @include('frontend.includes.footer')
+
     </div>
     <!-- Wrapper / End -->
 </body>

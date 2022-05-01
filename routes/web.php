@@ -42,7 +42,8 @@ Route::get('category-details/{id}', [CategoryController::class, 'category_detail
 Route::get('packages', [PackagesController::class, 'packages_list'])->name('packages');
 Route::get('packages-details/{id}', [PackagesController::class, 'packages_details'])->name('packages-details');
 
-Route::get('contact-us', [ContactusController::class, 'packages_details'])->name('contact-us');
+Route::get('contact-us', [ContactusController::class, 'contact_us'])->name('contact-us');
+Route::get('save-contact-form', [ContactusController::class, 'save_contact_form'])->name('save-contact-form');
 
 Route::get('sign-in', [SigninController::class, 'signin'])->name('sign-in');
 Route::post('check-sign-in', [SigninController::class, 'check_sign_in'])->name('check-sign-in');

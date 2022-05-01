@@ -1,5 +1,6 @@
 @extends('frontend.layouts.layout')
 @section('section')
+
  <!-- START SECTION PROPERTIES LISTING -->
  <section class="single-proper blog details">
     <div class="container">
@@ -20,27 +21,23 @@
                                 </div>
 
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                        <br><br>
-                        <div class="pro-wrapper">
-                            <div class="detail-wrapper-body">
-                                <div class="listing-title-bar">
-                                    <h3>{{ $packages_list_details[0]['name'] }}</h3>
-                                    <h5>Place : {{ $packages_list_details[0]['places'] }}</h5>
-                                    <h5>Event Category : {{ $packages_list_details[0]['event_category'] }}</h5>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+                <br><br>
+
+
+
+                <div class="single homes-content details mb-30">
+                    <h5 class="mb-4">Package Name : {{ $packages_list_details[0]['name'] }}</h5>
+                    <h5 class="mb-4">Package Price : {{ $packages_list_details[0]['price'] }}</h5>
+                    <h5 class="mb-4">Event Place : {{ $packages_list_details[0]['places'] }}</h5>
+                    <h5 class="mb-4">Event Category : {{ $packages_list_details[0]['event_category'] }}</h5>
+                    <h5 class="mb-4">Event Details : {{ $packages_list_details[0]['details'] }}</h5>
+
+                    <a href="{{ route('booking', ['package-id'=> $packages_list_details[0]['id'] ]) }}" class="btn btn-primary btn-anis ml-0">Book Package</a>
+                </div>
+
 
             </div>
 
