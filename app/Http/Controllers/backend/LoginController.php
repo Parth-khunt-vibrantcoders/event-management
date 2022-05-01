@@ -41,7 +41,7 @@ class LoginController extends Controller
 
     public function check_login(Request $request){
 
-        if (Auth::guard('admin')->attempt(['email' => $request->input('email'), 'user_type' => 'U', 'password' => $request->input('password'), 'is_deleted'=>'N'])) {
+        if (Auth::guard('admin')->attempt(['email' => $request->input('email'), 'user_type' => 'A', 'password' => $request->input('password'), 'is_deleted'=>'N'])) {
             $loginData = '';
             $request->session()->forget('logindata');
             $loginData = array(
