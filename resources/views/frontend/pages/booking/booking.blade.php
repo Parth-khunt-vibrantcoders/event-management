@@ -41,6 +41,7 @@ if (!empty(Auth()->guard('users')->user())) {
                             <td>{{ date("d-m-Y", strtotime($value['startdate'])) }}</td>
                             <td>{{ date("d-m-Y", strtotime($value['enddate'])) }}</td>
                             <td>{{ $value['advance_payment'] }}</td>
+                            
                             @if ($value['status'] == 'A')
                             <td><span class="mrg-l-5 category-tag" style="background-color: green; color: white;padding:5px;margin:5px">Booked</span></td>
                             @else
