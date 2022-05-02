@@ -41,13 +41,13 @@ if (!empty(Auth()->guard('users')->user())) {
                             <td>{{ date("d-m-Y", strtotime($value['startdate'])) }}</td>
                             <td>{{ date("d-m-Y", strtotime($value['enddate'])) }}</td>
                             <td>{{ $value['advance_payment'] }}</td>
-                            
+
                             @if ($value['status'] == 'A')
                             <td><span class="mrg-l-5 category-tag" style="background-color: green; color: white;padding:5px;margin:5px">Booked</span></td>
                             @else
                             <td><span class="mrg-l-5 category-tag" style="background-color: red;color: white;padding:5px;margin:5px">Canceled</span></td>
                             @endif
-                          
+
                             @if ($value['status'] == 'A')
                             <td class="edit"><button class="btn btn-danger cancel-booking" data-toggle="modal" data-target="#deleteModel" style="border: #004799 " data-id={{ $value['id'] }}>Cancel</button></td>
                             @else

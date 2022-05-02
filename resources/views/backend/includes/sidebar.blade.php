@@ -124,7 +124,7 @@ if (!empty(Auth()->guard('admin')->user())) {
                     </a>
                 </li>
 
-                <li class="menu-item menu-item-submenu {{ $currentRoute  ==  "booking-list"  ? 'menu-item-open menu-item-here' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
+                <li class="menu-item menu-item-submenu {{ $currentRoute  ==  "booking-list" || $currentRoute  ==  "cancel-booking-list"  ? 'menu-item-open menu-item-here' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
 
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
@@ -151,7 +151,7 @@ if (!empty(Auth()->guard('admin')->user())) {
                                     <span class="menu-text">Booking</span>
                                 </span>
                             </li>
-                            
+
                             <li class="menu-item {{ $currentRoute == "booking-list"  ? 'menu-item-active' : '' }}" aria-haspopup="true">
                                 <a href="{{ route('booking-list') }}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-line">
@@ -160,9 +160,9 @@ if (!empty(Auth()->guard('admin')->user())) {
                                     <span class="menu-text">Booking List</span>
                                 </a>
                             </li>
-                         
-                            <li class="menu-item {{ $currentRoute == "booking-list"  ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                                <a href="{{ route('booking-list') }}" class="menu-link">
+
+                            <li class="menu-item {{ $currentRoute == "cancel-booking-list"  ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                <a href="{{ route('cancel-booking-list') }}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>

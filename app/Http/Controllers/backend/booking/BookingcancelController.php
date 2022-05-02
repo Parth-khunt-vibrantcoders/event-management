@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Config;
 use App\Models\Booking;
 
-class BookingController extends Controller
+class BookingcancelController extends Controller
 {
     function __construct()
     {
@@ -32,10 +32,10 @@ class BookingController extends Controller
         );
         $data['js'] = array(
             'comman_function.js',
-            'booking.js',
+            'bookingcancel.js',
         );
         $data['funinit'] = array(
-            'Booking.init()'
+            'Bookingcancel.init()'
         );
         $data['header'] = array(
             'title' => 'Booking List',
@@ -53,7 +53,7 @@ class BookingController extends Controller
         switch ($action) {
             case 'getdatatable':
                 $objBooking = new Booking();
-                $list = $objBooking->getdatatable('A');
+                $list = $objBooking->getdatatable('C');
 
                 echo json_encode($list);
                 break;

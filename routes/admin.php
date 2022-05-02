@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\eventcategory\EventcategoryController;
 use App\Http\Controllers\backend\places\PlacesController;
 use App\Http\Controllers\backend\packages\PackagesController;
 use App\Http\Controllers\backend\booking\BookingController;
+use App\Http\Controllers\backend\booking\BookingcancelController;
 
 use App\Http\Controllers\backend\users\UsersController;
 use App\Http\Controllers\backend\users\SubscriberController;
@@ -72,6 +73,12 @@ Route::group(['prefix' => $adminPrefix, 'middleware' => ['admin']], function() {
     Route::group(['prefix' => $adminPrefix, 'middleware' => ['admin']], function() {
         Route::get('booking-list', [BookingController::class, 'list'])->name('booking-list');
         Route::post('booking-ajaxcall', [BookingController::class, 'ajaxcall'])->name('booking-ajaxcall');
+    });
+
+    $adminPrefix = "booking";
+    Route::group(['prefix' => $adminPrefix, 'middleware' => ['admin']], function() {
+        Route::get('cancel-booking-list', [BookingcancelController::class, 'list'])->name('cancel-booking-list');
+        Route::post('cancel-booking-ajaxcall', [BookingcancelController::class, 'ajaxcall'])->name('cancel-booking-ajaxcall');
     });
 
     $adminPrefix = "users";
