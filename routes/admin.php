@@ -74,6 +74,12 @@ Route::group(['prefix' => $adminPrefix, 'middleware' => ['admin']], function() {
         Route::post('booking-ajaxcall', [BookingController::class, 'ajaxcall'])->name('booking-ajaxcall');
     });
 
+    $adminPrefix = "users";
+    Route::group(['prefix' => $adminPrefix, 'middleware' => ['admin']], function() {
+        Route::get('users-list', [UsersController::class, 'list'])->name('users-list');
+        Route::post('users-ajaxcall', [UsersController::class, 'ajaxcall'])->name('users-ajaxcall');
+    });
+
     $adminPrefix = "contact-us";
     Route::group(['prefix' => $adminPrefix, 'middleware' => ['admin']], function() {
         Route::get('contact-us-list', [ContactusController::class, 'list'])->name('contact-us-list');
