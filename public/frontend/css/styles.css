@@ -156,7 +156,11 @@ li.active{
   color: #555;
   max-width: 550px;
 }
-
+.first-footer{
+  position: fixed !important;  
+  bottom: 0 !important;
+  width: 100% !important;
+}
 .top-headings-section h2::after {
   display: block;
   height: 3px;

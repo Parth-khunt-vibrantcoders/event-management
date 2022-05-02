@@ -2,14 +2,8 @@
  <footer class="first-footer">
 
     <div class="second-footer">
-        <div class="container">
-            <p>Developed by Rajvi Khodakiya</p>
-            {{-- <ul class="netsocials">
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-            </ul> --}}
+        <div class="container" style="text-align: center !important">
+            <p>Developed by Rajvi Khodakiya</p>            
         </div>
     </div>
 </footer>

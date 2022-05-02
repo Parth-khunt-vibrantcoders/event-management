@@ -19,6 +19,7 @@ class Booking extends Model
         $objBooking->price = $request->input('price');
         $objBooking->startdate = date("Y-m-d", strtotime($request->input('startdate')));
         $objBooking->enddate = date("Y-m-d", strtotime($request->input('enddate')));
+        $objBooking->advance_payment = $request->input('advance_payment');
         $objBooking->status = 'A';
         $objBooking->created_at = date("Y-m-d H:i:s");
         $objBooking->updated_at = date("Y-m-d H:i:s");
@@ -33,7 +34,7 @@ class Booking extends Model
                     ->join('places', 'places.id', '=', 'packages.places')
                     ->where('booking.userid', $userId)
                     ->orderBy('booking.id', 'DESC')
-                    ->select('booking.price', 'booking.id', 'booking.status', 'packages.name as packages', 'event_category.name as event_category', 'places.name as places', 'booking.startdate', 'booking.enddate')
+                    ->select('booking.price', 'booking.id', 'booking.status','booking.advance_payment', 'packages.name as packages', 'event_category.name as event_category', 'places.name as places', 'booking.startdate', 'booking.enddate')
                     ->get()->toArray();
     }
 

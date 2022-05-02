@@ -13,7 +13,7 @@
 </div>
   <!-- START SECTION LOGIN -->
   <div id="login">
-    <div class="login">
+    <div class="login" style="margin-bottom: 30px !important">
         <form id="book-package" enctype="multipart/form-data" method="POST" action="{{ route('save-book-package') }}">@csrf
 
             <div class="form-group">
@@ -53,8 +53,14 @@
                 <input type="date" class="form-control" name="enddate" placeholder="End Date" min="{{ date('Y-m-d')}}" id="enddate">
                 <i class="icon_lock_alt"></i>
             </div>
+            
+            <div class="form-group">
+                <label>Advance Payment</label>
+                <input type="number" class="form-control" name="advance_payment" placeholder="Advance Payment"  id="advance_payment">
+                <i class="icon_lock_alt"></i>
+            </div>
 
-            <button type="submit" class="btn_1 rounded full-width">Book Package</button>
+            <button type="submit" class="btn_1 rounded full-width" >Book Package</button>
 
         </form>
     </div>
